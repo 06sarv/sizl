@@ -21,9 +21,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <MantineProvider
         theme={{
-          colorScheme: 'light',
           primaryColor: 'blue',
         }}
+        defaultColorScheme="light"
       >
         <Dashboard onLanguageToggle={toggleLanguage} currentLanguage={language} />
       </MantineProvider>

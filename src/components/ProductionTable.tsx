@@ -58,8 +58,8 @@ export default function ProductionTable() {
           <tr>
             <th style={{ textAlign: 'left' }}>{t('table.machineName')}</th>
             <th style={{ textAlign: 'left' }}>{t('table.status')}</th>
-            <th style={{ textAlign: 'right' }}>{t('table.output')}</th>
-            <th style={{ textAlign: 'left' }}>{t('table.lastUpdated')}</th>
+            <th style={{ textAlign: 'left', paddingRight: 24 }}>{t('table.output')}</th>
+            <th style={{ textAlign: 'left', paddingLeft: 24 }}>{t('table.lastUpdated')}</th>
           </tr>
         </thead>
         <tbody>
@@ -71,8 +71,8 @@ export default function ProductionTable() {
                   {t(`table.status${row.status.charAt(0).toUpperCase() + row.status.slice(1)}`)}
                 </Badge>
               </td>
-              <td style={{ textAlign: 'right' }}>{row.output.toLocaleString()}</td>
-              <td style={{ textAlign: 'left' }}>{new Date(row.lastUpdated).toLocaleString()}</td>
+              <td style={{ textAlign: 'left', paddingRight: 24 }}>{Number(row.output).toLocaleString()}</td>
+              <td style={{ textAlign: 'left', paddingLeft: 24 }}>{new Date(row.lastUpdated).toLocaleString()}</td>
             </tr>
           ))}
         </tbody>

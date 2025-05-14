@@ -37,5 +37,8 @@ A lightweight smart factory dashboard UI built with React, TypeScript, Mantine, 
 - `src/i18n/` - Internationalization setup
 - `src/assets/` - Project screenshots and images
 
-## License
-MIT
+
+<div align="center">
+  <strong>Made with ❤️ by Sarvagna</strong>
+</div> 
+

@@ -44,20 +44,28 @@ export default function ProductionChart({ selectedMachine, dateRange }: Producti
   // Filter data based on date range
   const filteredData = data?.filter((item) => {
     const itemDate = new Date(item.date);
+    itemDate.setHours(0, 0, 0, 0);
+
     const [startDate, endDate] = dateRange;
-    
+
     // If no dates are selected, show all data
     if (!startDate && !endDate) return true;
-    
-    // Set time to start of day for proper date comparison
-    const itemDateStart = new Date(itemDate.setHours(0, 0, 0, 0));
-    const startDateStart = startDate ? new Date(startDate.setHours(0, 0, 0, 0)) : null;
-    const endDateEnd = endDate ? new Date(endDate.setHours(23, 59, 59, 999)) : null;
-    
-    if (!startDateStart) return itemDateStart <= (endDateEnd || new Date());
-    if (!endDateEnd) return itemDateStart >= startDateStart;
-    
-    return itemDateStart >= startDateStart && itemDateStart <= endDateEnd;
+
+    let isAfterStart = true;
+    let isBeforeEnd = true;
+
+    if (startDate instanceof Date && !isNaN(startDate.getTime())) {
+      const start = new Date(startDate);
+      start.setHours(0, 0, 0, 0);
+      isAfterStart = itemDate >= start;
+    }
+    if (endDate instanceof Date && !isNaN(endDate.getTime())) {
+      const end = new Date(endDate);
+      end.setHours(0, 0, 0, 0);
+      isBeforeEnd = itemDate <= end;
+    }
+
+    return isAfterStart && isBeforeEnd;
   });
 
   // If machine is selected, adjust the counts (this is a mock adjustment)

@@ -11,7 +11,7 @@ interface ProductionChartProps {
 
 // Fetch data from Mocky.io
 const fetchProductionData = async (): Promise<DailyProduction[]> => {
-  const response = await fetch('https://run.mocky.io/v3/35c6f587-0e86-41cb-a138-4575fe1d97bb');
+  const response = await fetch('https://run.mocky.io/v3/40840922-b7e2-4f94-b5aa-7eaa5641db6e');
   if (!response.ok) {
     throw new Error('Failed to fetch production data');
   }

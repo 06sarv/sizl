@@ -47,7 +47,19 @@ export default function Dashboard({ onLanguageToggle, currentLanguage }: Dashboa
               label={t('filters.dateRange')}
               placeholder={t('filters.dateRange')}
               value={dateRange}
-              onChange={(value) => setDateRange(value as [Date | null, Date | null])}
+              onChange={(value) => {
+                function isValidDate(d: unknown): d is Date {
+                  return d instanceof Date && !isNaN(d.getTime());
+                }
+                if (Array.isArray(value) && value.length === 2) {
+                  setDateRange([
+                    isValidDate(value[0]) ? value[0] : (typeof value[0] === 'string' ? new Date(value[0]) : null),
+                    isValidDate(value[1]) ? value[1] : (typeof value[1] === 'string' ? new Date(value[1]) : null),
+                  ]);
+                } else {
+                  setDateRange([null, null]);
+                }
+              }}
               clearable
             />
           </Group>
